@@ -1,20 +1,3 @@
-%% Machine Learning Online Class - Exercise 4 Neural Network Learning
-
-%  Instructions
-%  ------------
-% 
-%  This file contains code that helps you get started on the
-%  linear exercise. You will need to complete the following functions 
-%  in this exericse:
-%
-%     sigmoidGradient.m
-%     randInitializeWeights.m
-%     nnCostFunction.m
-%
-%  For this exercise, you will not need to change any code in this file,
-%  or any other files other than those mentioned above.
-%
-
 %% Initialization
 clear ; close all; clc
 
@@ -25,10 +8,6 @@ num_labels = 2;          % 10 labels, from 1 to 10
 iter = 100;
                           % (note that we have mapped "0" to label 10)
 
-%% =========== Part 1: Loading and Visualizing Data =============
-%  We start the exercise by first loading and visualizing the dataset. 
-%  You will be working with a dataset that contains handwritten digits.
-%
 
 % Load Training Data
 fprintf('Loading Data ...\n')
@@ -40,15 +19,9 @@ Xtest = csvread('data_testX.csv');
 ytest = csvread('data_testy.csv');
 ytest = ytest .+ 1;
 
-fprint('\nData Loaded, Press Any Key To Continue ...\n')
+fprintf('\nData Loaded, Press Any Key To Continue ...\n')
 pause;
 
-
-%% ================ Part 6: Initializing Pameters ================
-%  In this part of the exercise, you will be starting to implment a three
-%  layer neural network that classifies digits. You will start by
-%  implementing a function to initialize the weights of the neural network
-%  (randInitializeWeights.m)
 
 fprintf('\nInitializing Neural Network Parameters ...\n')
 
@@ -60,14 +33,11 @@ initial_Theta3 = randInitializeWeights(hidden_layer_size, num_labels);
 initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:) ; initial_Theta3(:)];
 
 
+fprintf('\nParameters Initialized, Press Any Key To Continue ...\n')
+pause;
 
-%% =================== Part 8: Training NN ===================
-%  You have now implemented all the code necessary to train a neural 
-%  network. To train your neural network, we will now use "fmincg", which
-%  is a function which works similarly to "fminunc". Recall that these
-%  advanced optimizers are able to train our cost functions efficiently as
-%  long as we provide them with the gradient computations.
-%
+
+
 fprintf('\nTraining Neural Network... \n')
 
 %  After you have completed the assignment, change the MaxIter to a larger
@@ -87,7 +57,6 @@ costFunction = @(p) nnCostFunction2(p, ...
 % neural network parameters)
 [nn_params, cost] = fmincg(costFunction, initial_nn_params, options);
 
-% Obtain Theta1, Theta2 and Th back from nn_params
 Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
                  hidden_layer_size, (input_layer_size + 1));
 
